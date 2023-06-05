@@ -1,0 +1,21 @@
+{
+    "name": "damirbubanovic/cave-invertebrates",
+    "description": "Plugin for scientific cave invertebrate articles",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Damirbubanovic\\CaveInvertebrates\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Damir Bubanović",
+            "email": "damir.bubanovic@yahoo.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+
+    }
+}

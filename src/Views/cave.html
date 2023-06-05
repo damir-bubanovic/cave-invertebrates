@@ -1,0 +1,41 @@
+<div id="cave-inv">
+	<v-app>
+      <v-main>
+        <v-container>
+
+					  <v-tabs v-model="tab" class="bg-black">
+					  	<v-tab value="1" class="text-h6 text-uppercase font-weight-black">info</v-tab>
+					    <v-tab value="2" class="text-h6 text-uppercase font-weight-black">article</v-tab>
+					    <v-tab value="3" class="text-h6 text-uppercase font-weight-black">author</v-tab>
+					    <v-tab value="4" class="text-h6 text-uppercase font-weight-black">keyword</v-tab>
+					    <v-tab value="5" class="text-h6 text-uppercase font-weight-black">category</v-tab>
+					    <v-tab value="6" class="text-h6 text-uppercase font-weight-black">file</v-tab>
+					  </v-tabs>
+
+						<v-alert v-if="alert.show" :type="alert.status">{{ alert.message }}</v-alert>
+
+				    <v-window v-model="tab">
+				    	<v-window-item value="1">
+				        <?php include_once(CAVE_INVERTEBRATES_VIEWS_TABS_PATH . 'info.html'); ?>
+				      </v-window-item>
+				      <v-window-item value="2">
+				        <?php include_once(CAVE_INVERTEBRATES_VIEWS_TABS_PATH . 'article.html'); ?>
+				      </v-window-item>
+				      <v-window-item value="3">
+				        <?php include_once(CAVE_INVERTEBRATES_VIEWS_TABS_PATH . 'author.html'); ?>
+				      </v-window-item>
+				      <v-window-item value="4">
+				        <?php include_once(CAVE_INVERTEBRATES_VIEWS_TABS_PATH . 'keyword.html'); ?>
+				      </v-window-item>
+				      <v-window-item value="5">
+				        <?php include_once(CAVE_INVERTEBRATES_VIEWS_TABS_PATH . 'category.html'); ?>
+				      </v-window-item>
+				      <v-window-item value="6">
+				        <?php include_once(CAVE_INVERTEBRATES_VIEWS_TABS_PATH . 'file.html'); ?>
+				      </v-window-item>
+				    </v-window>
+
+        </v-container>
+      </v-main>
+    </v-app>
+</div>

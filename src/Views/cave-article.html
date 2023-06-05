@@ -1,0 +1,26 @@
+<div id="cave-inv-articles">
+
+	<input :style="{ 'width': '100%' }" type="text" v-model="search" placeholder="Search Articles by Title, Category, Year, Authors, Keywords" >
+	<hr>
+	<small :style="{ 'float': 'right' }">* click on reference to show full reference</small>
+	<table>
+		<tr :style="{ 'background-color': '#cfd8dc' }">
+	    <th>Title</th>
+	    <th>Authors</th>
+	    <th>Keywords</th>
+	    <th>Year</th>
+	    <th>Category</th>
+	    <th>Reference</th>
+	  </tr>
+	  <tr v-for="article in filteredArticles" :key="article.id">
+	    <td><a v-bind:href= article.link target="_blank">{{ article.title }}</a></td>
+	    <td><small :style="{ 'display': 'inline-block', 'padding': '0px 10px 0px 10px' }" v-for="author in article.authors">{{ author.display_name }}, </small :style="{ 'display': 'inline-block', 'padding': '0px 10px 0px 10px' }"></td>
+	    <td><small :style="{ 'display': 'inline-block', 'padding': '0px 10px 0px 10px' }" v-for="keyword in article.keywords">{{ keyword.name }}, </small :style="{ 'display': 'inline-block', 'padding': '0px 10px 0px 10px' }"></td>
+	    <td>{{ article.year }}</td>
+	    <td>{{ article.name }}</td>
+	    <td @click="fullReference(article.reference)">{{ article.reference.slice(0, 100) }} ...</td>
+	  </tr>
+	</table>
+
+</div>
+

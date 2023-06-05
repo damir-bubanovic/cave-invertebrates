@@ -1,0 +1,31 @@
+<v-row no-gutters class="mt-2">
+  <v-toolbar density="compact" :elevation="8" class="w-100" color="blue-grey-lighten-4">
+    <h2 class="pl-3">Upload File</h2>
+  </v-toolbar>
+</v-row>
+
+<v-row no-gutters class="my-10">
+    <v-card class="w-100">
+        <v-card-item>
+            <v-card-title class="my-2">
+                <v-icon class="mr-2">mdi-alert-circle-outline</v-icon> Once you select file - upload process will begin!
+            </v-card-title>
+        </v-card-item>
+
+        <v-card-text class="px-8">
+            <v-form ref="file" class="w-100">
+                <v-file-input v-model="file" class="my-4" accept=".csv" label="Select .csv file" @change="readFile" required></v-file-input>
+            </v-form>
+
+            <v-progress-linear
+                :active="loading"
+                :indeterminate="loading"
+                absolute
+                bottom
+                color="green-accent-4"
+            ></v-progress-linear>
+        </v-card-text>
+    </v-card>
+</v-row>
+
+

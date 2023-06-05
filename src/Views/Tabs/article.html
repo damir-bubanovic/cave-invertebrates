@@ -1,0 +1,103 @@
+<v-row no-gutters class="mt-2">
+  <v-toolbar density="compact" :elevation="8" class="w-100" color="blue-grey-lighten-4">
+  	<h2 class="pl-3">New Article</h2>
+  </v-toolbar>
+</v-row>
+
+<v-row no-gutters class="my-10">
+  <v-card class="w-100">
+    <v-card-text class="px-8">
+			<v-form ref="article" v-model="article.form"class="w-100">
+			  <v-text-field
+					v-model="article.title"
+					:rules="article.titleRule"
+					placeholder="Title"
+					required
+				></v-text-field>
+				<v-text-field
+					v-model="article.reference"
+					:rules="article.referenceRule"
+					placeholder="Reference"
+					required
+				></v-text-field>
+				<v-row no-gutters>
+      		<v-col xl="10" lg="10" md="8" sm="12" xs="12">
+						<v-text-field
+			        v-model="article.link"
+			        :rules="article.linkRule"
+			        placeholder="Link URL"
+			        required
+					  ></v-text-field>
+		      </v-col>
+		      <v-col xl="2" lg="2" md="4" sm="12" xs="12">
+					  <v-text-field
+				        v-model="article.year"
+				        :rules="article.yearRule"
+				        :counter="4"
+				        placeholder="Year"
+				        required
+					  ></v-text-field>
+		      </v-col>
+		    </v-row>
+		    <p>Select Category</p>
+		    <v-select
+					v-model="article.category"
+					:rules="article.categoryRule"
+					:hint="`${category.categories.term_id}, ${category.categories.name}`"
+					:items="category.categories"
+			    	item-title="name"
+			    	item-value="term_id"
+					required
+				></v-select>
+				<p>Select Authors</p>
+			  <v-select
+					v-model="article.authors"
+					:hint="`${author.authors.id}, ${author.authors.display_name}`"
+					:items="author.authors"
+			    	item-title="display_name"
+			    	item-value="id"
+			    multiple
+				></v-select>
+				<p>Select Keywords</p>
+			  <v-select
+					v-model="article.keywords"
+					:hint="`${keyword.keywords.term_id}, ${keyword.keywords.name}`"
+					:items="keyword.keywords"
+			    	item-title="name"
+			    	item-value="term_id"
+					multiple
+				></v-select>
+			</v-form>
+
+			<div class="d-flex">
+				<v-btn :disabled="!article.form" @click="createArticle" class="mx-5">
+					<v-icon color="green-darken-2" size="large" class="mr-2">mdi-check-circle-outline</v-icon> Save
+				</v-btn>
+				<v-btn :disabled="!article.form" @click="editArticle" class="mx-5">
+					<v-icon color="yellow-darken-2" size="large" class="mr-2">mdi-pencil-circle-outline</v-icon> Edit
+				</v-btn>
+				<v-btn :disabled="!article.form" @click="deleteArticle" class="mx-5">
+					<v-icon color="red-darken-2" size="large" class="mr-2">mdi-delete-circle-outline</v-icon> Delete
+				</v-btn>
+			</div>
+    </v-card-text>
+  </v-card>
+</v-row>
+
+<v-row no-gutters class="my-10">
+	<v-card class="w-100">
+		<v-card-item>
+			<v-card-title class="text-h5 font-weight-black my-2">Articles List</v-card-title>
+			<v-card-subtitle><v-icon class="mr-2">mdi-alert-circle-outline</v-icon> Click on Article to Edit / Delete it</v-card-subtitle>
+		</v-card-item>
+
+		<v-card-text class="px-8">
+			<ul :style="{ 'height': '300px', 'overflow-y': 'auto' }">
+				<li v-for="article in article.articles" @click="selectArticle(article.id, article.title, article.reference, article.link, article.year, article.category_id, article.name, article.authors, article.keywords)">
+				  {{ article.title }}
+				</li>
+			</ul>
+		</v-card-text>
+	</v-card>	
+</v-row>
+

@@ -1,0 +1,50 @@
+<v-row no-gutters class="mt-2">
+  <v-toolbar density="compact" :elevation="8" class="w-100" color="blue-grey-lighten-4">
+  	<h2 class="pl-3">New Author</h2>
+  </v-toolbar>
+</v-row>
+
+<v-row no-gutters class="my-10">
+  <v-card class="w-100">
+    <v-card-text class="px-8">
+			<v-form ref="author" v-model="author.form" class="w-100">
+			  <v-text-field
+					v-model="author.name"
+					:rules="author.nameRule"
+					:counter="40"
+					required
+				></v-text-field>
+			</v-form>
+
+			<div class="d-flex">
+				<v-btn :disabled="!author.form" @click="createAuthor" class="mx-5">
+					<v-icon color="green-darken-2" size="large" class="mr-2">mdi-check-circle-outline</v-icon> Save
+				</v-btn>
+				<v-btn :disabled="!author.form" @click="editAuthor" class="mx-5">
+					<v-icon color="yellow-darken-2" size="large" class="mr-2">mdi-pencil-circle-outline</v-icon> Edit
+				</v-btn>
+				<v-btn :disabled="!author.form" @click="deleteAuthor" class="mx-5">
+					<v-icon color="red-darken-2" size="large" class="mr-2">mdi-delete-circle-outline</v-icon> Delete
+				</v-btn>
+			</div>
+    </v-card-text>
+  </v-card>
+</v-row>
+
+<v-row no-gutters class="my-10">
+	<v-card class="w-100">
+		<v-card-item>
+			<v-card-title class="text-h5 font-weight-black my-2">Authors List</v-card-title>
+			<v-card-subtitle><v-icon class="mr-2">mdi-alert-circle-outline</v-icon> Click on Author to Edit / Delete it</v-card-subtitle>
+		</v-card-item>
+
+		<v-card-text class="px-8">
+			<ul :style="{ 'height': '300px', 'overflow-y': 'auto' }">
+				<li v-for="author in author.authors" @click="selectAuthor(author.id, author.display_name)">
+				  {{ author.display_name }}
+				</li>
+			</ul>
+		</v-card-text>
+	</v-card>	
+</v-row>
+
